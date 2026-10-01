@@ -1,1 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A.B STORE | Premium Shopping</title>
 
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+  background:#f7f7f8;
+  color:#151515;
+}
+
+header{
+  background:#111;
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 3px 15px #0003;
+}
+
+.navbar{
+  max-width:1200px;
+  margin:auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.logo span{
+  color:#b78cff;
+}
+
+.cart-btn{
+  border:0;
+  background:white;
+  color:#111;
+  padding:10px 17px;
+  border-radius:25px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.hero{
+  max-width:1200px;
+  margin:auto;
+  padding:70px 20px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+  align-items:center;
+}
+
+.badge{
+  color:#7650d9;
+  font-weight:bold;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:13px;
+}
+
+.hero h1{
+  font-size:65px;
+  line-height:1;
+  margin:15px 0;
+}
+
+.hero h1 span{
+  color:#7650d9;
+}
+
+.hero p{
+  color:#666;
+  line-height:1.7;
+  font-size:17px;
+  max-width:560px;
+}
+
+.shop-btn{
+  display:inline-block;
+  margin-top:25px;
+  background:#111;
+  color:white;
+  padding:14px 24px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.hero-box{
+  min-height:330px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#19131f,#6847a8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:white;
+  font-size:80px;
+  font-weight:900;
+  box-shadow:0 25px 60px #0002;
+}
+
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:30px 20px 70px;
+}
+
+.section-title{
+  font-size:32px;
+  margin-bottom:25px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.product{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 5px 20px #0000000d;
+  border:1px solid #eee;
+}
+
+.product-img{
+  height:220px;
+  background:linear-gradient(135deg,#eee,#d8d8df);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#555;
+  font-size:23px;
+  font-weight:bold;
+}
+
+.product-info{
+  padding:18px;
+}
+
+.product-info small{
+  color:#7650d9;
+  font-weight:bold;
+}
+
+.product-info h3{
+  margin:8px 0;
+}
+
+.price{
+  font-size:20px;
+  font-weight:bold;
+}
+
+.add-btn{
+  width:100%;
+  margin-top:15px;
+  padding:12px;
+  border:0;
+  border-radius:10px;
+  background:#111;
+  color:white;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.feature{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  border:1px solid #eee;
+}
+
+.feature h3{
+  margin-bottom:8px;
+}
+
+.feature p{
+  color:#666;
+  line-height:1.6;
+}
+
+footer{
+  background:#111;
+  color:#aaa;
+  text-align:center;
+  padding:30px 20px;
+}
+
+/* MODALS */
+
+.overlay{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0009;
+  z-index:2000;
+  padding:20px;
+  overflow:auto;
+}
+
+.modal{
+  max-width:650px;
+  margin:40px auto;
+  background:white;
+  border-radius:20px;
+  padding:25px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:18px;
+  top:12px;
+  border:0;
+  background:none;
+  font-size:30px;
+  cursor:pointer;
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
+}
+
+.qty button{
+  border:1px solid #ddd;
+  background:white;
+  padding:5px 10px;
+  cursor:pointer;
+}
+
+.total{
+  font-size:22px;
+  font-weight:bold;
+  margin:20px 0;
+}
+
+.checkout-btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  background:#111;
+  color:white;
+  border-radius:10px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.form{
+  display:grid;
+  gap:12px;
+  margin-top:20px;
+}
+
+.form input,
+.form textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:9px;
+}
+
+.payment-options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.payment{
+  padding:15px;
+  border:2px solid #ddd;
+  border-radius:12px;
+  background:white;
+  cursor:pointer;
+  text-align:left;
+}
+
+.payment.active{
+  border-color:#7650d9;
+  background:#f5f0ff;
+}
+
+.bank-details{
+  display:none;
+  background:#f4f4f4;
+  padding:15px;
+  border-radius:10px;
+  line-height:1.8;
+}
+
+.bank-details.show{
+  display:block;
+}
+
+.whatsapp{
+  display:block;
+  margin-top:12px;
+  background:#20b858;
+  color:white;
+  text-align:center;
+  padding:13px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+@media(max-width:850px){
+  .hero{
+    grid-template-columns:1fr;
+  }
+
+  .hero h1{
+    font-size:50px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .features{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:500px){
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:45px;
+  }
+
+  .hero h1{
+    font-size:43px;
+  }
+
+  .hero-box{
+    min-height:230px;
+    font-size:60px;
+  }
+
+  .payment-options{
+    grid-template-columns:1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="logo">A.B <span>STORE</span></div>
+
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart (<span id="cartCount">0</span>)
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+
+  <div>
+    <div class="badge">Premium Shopping</div>
+
+    <h1>
+      Shop Smart.<br>
+      <span>Live Better.</span>
+    </h1>
+
+    <p>
+      Welcome to A.B STORE — your online destination for quality
+      products at great prices. Choose Cash on Delivery or Advance
+      Payment at checkout.
+    </p>
+
+    <a href="#shop" class="shop-btn">Shop Now →</a>
+  </div>
+
+  <div class="hero-box">
+    A.B
+  </div>
+
+</section>
+
+<section class="section" id="shop">
+
+  <h2 class="section-title">Featured Products</h2>
+
+  <div class="products">
+
+    <div class="product">
+
+      <div class="product-img">
+        Glow Face Wash
+      </div>
+
+      <div class="product-info">
+
+        <small>SKINCARE</small>
+
+        <h3>Glow Face Wash</h3>
+
+        <div class="price">
+          Rs. 899
+        </div>
+
+        <button
+          class="add-btn"
+          onclick="addToCart('Glow Face Wash',899)">
+          Add to Cart
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-img">
+        Charcoal Face Wash
+      </div>
+
+      <div class="product-info">
+
+        <small>SKINCARE</small>
+
+        <h3>Charcoal Face Wash</h3>
+
+        <div class="price">
+          Rs. 799
+        </div>
+
+        <button
+          class="add-btn"
+          onclick="addToCart('Charcoal Face Wash',799)">
+          Add to Cart
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-img">
+        Body Wash
+      </div>
+
+      <div class="product-info">
+
+        <small>BODY CARE</small>
+
+        <h3>Premium Body Wash</h3>
+
+        <div class="price">
+          Rs. 1,199
+        </div>
+
+        <button
+          class="add-btn"
+          onclick="addToCart('Premium Body Wash',1199)">
+          Add to Cart
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <div class="product">
+
+      <div class="product-img">
+        Shampoo
+      </div>
+
+      <div class="product-info">
+
+        <small>HAIR CARE</small>
+
+        <h3>Daily Shampoo</h3>
+
+        <div class="price">
+          Rs. 999
+        </div>
+
+        <button
+          class="add-btn"
+          onclick="addToCart('Daily Shampoo',999)">
+          Add to Cart
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="section">
+
+  <h2 class="section-title">
+    Why A.B STORE?
+  </h2>
+
+  <div class="features">
+
+    <div class="feature">
+      <h3>🚚 Cash on Delivery</h3>
+      <p>
+        Order your products and pay when your parcel arrives.
+      </p>
+    </div>
+
+    <div class="feature">
+      <h3>🏦 Advance Payment</h3>
+      <p>
+        Transfer payment to the bank account provided by the store
+        and confirm your payment through WhatsApp.
+      </p>
+    </div>
+
+    <div class="feature">
+      <h3>📱 Easy Confirmation</h3>
+      <p>
+        After advance payment, simply send your payment screenshot
+        to our WhatsApp number.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer>
+  <strong>A.B STORE</strong>
+  <br><br>
+  © 2026 A.B STORE. All Rights Reserved.
+</footer>
+
+
+<!-- CART -->
+
+<div class="overlay" id="cartModal">
+
+  <div class="modal">
+
+    <button class="close" onclick="closeCart()">×</button>
+
+    <h2>Your Cart</h2>
+
+    <div id="cartItems"></div>
+
+    <div class="total">
+      Total: Rs. <span id="cartTotal">0</span>
+    </div>
+
+    <button
+      class="checkout-btn"
+      onclick="openCheckout()">
+      Proceed to Checkout
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- CHECKOUT -->
+
+<div class="overlay" id="checkoutModal">
+
+  <div class="modal">
+
+    <button class="close" onclick="closeCheckout()">×</button>
+
+    <h2>Checkout</h2>
+
+    <form class="form" onsubmit="placeOrder(event)">
+
+      <input
+        id="customerName"
+        type="text"
+        placeholder="Full Name"
+        required>
+
+      <input
+        id="customerPhone"
+        type="tel"
+        placeholder="Phone Number"
+        required>
+
+      <textarea
+        id="customerAddress"
+        rows="3"
+        placeholder="Complete Delivery Address"
+        required></textarea>
+
+
+      <h3>Payment Method</h3>
+
+      <div class="payment-options">
+
+        <button
+          type="button"
+          id="codPayment"
+          class="payment active"
+          onclick="selectPayment('COD')">
+
+          💵 <strong>Cash on Delivery</strong>
+
+          <br>
+
+          <small>Pay when parcel arrives</small>
+
+        </button>
+
+
+        <button
+          type="button"
+          id="advancePayment"
+          class="payment"
+          onclick="selectPayment('ADVANCE')">
+
+          🏦 <strong>Advance Payment</strong>
+
+          <br>
+
+          <small>Bank transfer</small>
+
+        </button>
+
+      </div>
+
+
+      <div
+        id="bankDetails"
+        class="bank-details">
+
+        <strong>Advance Payment Details</strong>
+
+        <br><br>
+
+        Bank:
+        <span id="bankName">Your Bank</span>
+
+        <br>
+
+        Account Title:
+        <span id="accountTitle">A.B STORE</span>
+
+        <br>
+
+        Account / IBAN:
+        <span id="accountNumber">XXXXXXXX</span>
+
+        <br><br>
+
+        After payment, send your payment screenshot
+        to our WhatsApp for confirmation.
+
+        <a
+          id="whatsappButton"
+          class="whatsapp"
+          href="#"
+          target="_blank">
+
+          📱 Confirm Payment on WhatsApp
+
+        </a>
+
+      </div>
+
+
+      <button
+        type="submit"
+        class="checkout-btn">
+
+        Place Order
+
+      </button>
+
+    </form>
+
+  </div>
+
+</div>
+
+
+<script>
+
+let cart = [];
+
+let paymentMethod = "COD";
+
+
+/* ADMIN PAYMENT DETAILS */
+
+let storeSettings = {
+
+  bankName: "Your Bank",
+
+  accountTitle: "A.B STORE",
+
+  accountNumber: "XXXXXXXXXXXX",
+
+  whatsapp: "923001234567"
+
+};
+
+
+/* ADD TO CART */
+
+function addToCart(name,price){
+
+  let existing = cart.find(
+    item => item.name === name
+  );
+
+  if(existing){
+
+    existing.quantity++;
+
+  }else{
+
+    cart.push({
+
+      name:name,
+
+      price:price,
+
+      quantity:1
+
+    });
+
+  }
+
+  updateCart();
+
+  alert("Product added to cart!");
+
+}
+
+
+/* UPDATE CART */
+
+function updateCart(){
+
+  let count = 0;
+
+  let total = 0;
+
+  cart.forEach(item => {
+
+    count += item.quantity;
+
+    total += item.price * item.quantity;
+
+  });
+
+
+  document.getElementById(
+    "cartCount"
+  ).innerText = count;
+
+
+  document.getElementById(
+    "cartTotal"
+  ).innerText = total.toLocaleString();
+
+
+  let html = "";
+
+
+  if(cart.length === 0){
+
+    html = "<p>Your cart is empty.</p>";
+
+  }else{
+
+    cart.forEach((item,index)=>{
+
+      html += `
+
+        <div class="cart-item">
+
+          <div>
+
+            <strong>
+              ${item.name}
+            </strong>
+
+            <br>
+
+            Rs. ${item.price.toLocaleString()}
+
+          </div>
+
+
+          <div class="qty">
+
+            <button onclick="changeQty(${index},-1)">
+              −
+            </button>
+
+            ${item.quantity}
+
+            <button onclick="changeQty(${index},1)">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    });
+
+  }
+
+
+  document.getElementById(
+    "cartItems"
+  ).innerHTML = html;
+
+}
+
+
+/* QUANTITY */
+
+function changeQty(index,value){
+
+  cart[index].quantity += value;
+
+  if(cart[index].quantity <= 0){
+
+    cart.splice(index,1);
+
+  }
+
+  updateCart();
+
+}
+
+
+/* OPEN CART */
+
+function openCart(){
+
+  document.getElementById(
+    "cartModal"
+  ).style.display = "block";
+
+}
+
+
+/* CLOSE CART */
+
+function closeCart(){
+
+  document.getElementById(
+    "cartModal"
+  ).style.display = "none";
+
+}
+
+
+/* CHECKOUT */
+
+function openCheckout(){
+
+  if(cart.length === 0){
+
+    alert("Your cart is empty!");
+
+    return;
+
+  }
+
+  closeCart();
+
+  document.getElementById(
+    "checkoutModal"
+  ).style.display = "block";
+
+  updateBankDetails();
+
+}
+
+
+/* CLOSE CHECKOUT */
+
+function closeCheckout(){
+
+  document.getElementById(
+    "checkoutModal"
+  ).style.display = "none";
+
+}
+
+
+/* PAYMENT METHOD */
+
+function selectPayment(method){
+
+  paymentMethod = method;
+
+
+  document.getElementById(
+    "codPayment"
+  ).classList.remove("active");
+
+
+  document.getElementById(
+    "advancePayment"
+  ).classList.remove("active");
+
+
+  if(method === "COD"){
+
+    document.getElementById(
+      "codPayment"
+    ).classList.add("active");
+
+    document.getElementById(
+      "bankDetails"
+    ).classList.remove("show");
+
+  }else{
+
+    document.getElementById(
+      "advancePayment"
+    ).classList.add("active");
+
+    document.getElementById(
+      "bankDetails"
+    ).classList.add("show");
+
+  }
+
+}
+
+
+/* BANK DETAILS */
+
+function updateBankDetails(){
+
+  document.getElementById(
+    "bankName"
+  ).innerText = storeSettings.bankName;
+
+
+  document.getElementById(
+    "accountTitle"
+  ).innerText = storeSettings.accountTitle;
+
+
+  document.getElementById(
+    "accountNumber"
+  ).innerText = storeSettings.accountNumber;
+
+
+  let message =
+    "Hello A.B STORE, I have made the advance payment. I am sending my payment screenshot for order confirmation.";
+
+
+  document.getElementById(
+    "whatsappButton"
+  ).href =
+    "https://wa.me/" +
+    storeSettings.whatsapp +
+    "?text=" +
+    encodeURIComponent(message);
+
+}
+
+
+/* PLACE ORDER */
+
+function placeOrder(event){
+
+  event.preventDefault();
+
+
+  let name =
+    document.getElementById(
+      "customerName"
+    ).value;
+
+
+  let phone =
+    document.getElementById(
+      "customerPhone"
+    ).value;
+
+
+  let address =
+    document.getElementById(
+      "customerAddress"
+    ).value;
+
+
+  let orderText =
+    "A.B STORE ORDER%0A%0A" +
+
+    "Name: " +
+    encodeURIComponent(name) +
+
+    "%0APhone: " +
+    encodeURIComponent(phone) +
+
+    "%0AAddress: " +
+    encodeURIComponent(address) +
+
+    "%0APayment: " +
+    encodeURIComponent(paymentMethod);
+
+
+  if(paymentMethod === "ADVANCE"){
+
+    alert(
+      "Order details ready. Please complete the bank transfer and send the payment screenshot on WhatsApp for confirmation."
+    );
+
+    window.open(
+      "https://wa.me/" +
+      storeSettings.whatsapp +
+      "?text=" +
+      orderText,
+      "_blank"
+    );
+
+  }else{
+
+    alert(
+      "Your COD order has been placed successfully!"
+    );
+
+  }
+
+
+  cart = [];
+
+  updateCart();
+
+  closeCheckout();
+
+}
+
+updateCart();
+
+</script>
+
+</body>
+  </html>
