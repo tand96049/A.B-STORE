@@ -3,372 +3,646 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A.B STORE | Premium Shopping</title>
+<title>A.B STORE — Shop Smart. Live Better.</title>
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,Helvetica,sans-serif;
-}
-
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 body{
-  background:#f7f7f8;
-  color:#151515;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f7f7f7;
+  color:#111;
+  overflow-x:hidden
 }
+button,input,select,textarea{font:inherit}
+button{cursor:pointer;border:0}
 
-header{
+.announcement{
   background:#111;
   color:white;
+  text-align:center;
+  padding:10px;
+  font-size:13px;
+  letter-spacing:.4px;
+  animation:slideDown .7s ease
+}
+.announcement span{color:#d4ff00;font-weight:bold}
+
+header{
   position:sticky;
   top:0;
   z-index:1000;
-  box-shadow:0 3px 15px #0003;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid #eee;
+  transition:.3s
 }
-
-.navbar{
-  max-width:1200px;
+.nav{
+  max-width:1250px;
   margin:auto;
-  padding:16px 20px;
+  height:74px;
+  padding:0 20px;
   display:flex;
   align-items:center;
   justify-content:space-between;
+  gap:20px
 }
-
 .logo{
   font-size:25px;
   font-weight:900;
-  letter-spacing:1px;
+  letter-spacing:-1px
 }
-
-.logo span{
-  color:#b78cff;
+.logo span{color:#777}
+.navlinks{
+  display:flex;
+  gap:28px;
+  font-size:14px;
+  font-weight:600
 }
-
-.cart-btn{
-  border:0;
-  background:white;
+.navlinks a{
   color:#111;
-  padding:10px 17px;
-  border-radius:25px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.hero{
-  max-width:1200px;
-  margin:auto;
-  padding:70px 20px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:30px;
-  align-items:center;
-}
-
-.badge{
-  color:#7650d9;
-  font-weight:bold;
-  text-transform:uppercase;
-  letter-spacing:2px;
-  font-size:13px;
-}
-
-.hero h1{
-  font-size:65px;
-  line-height:1;
-  margin:15px 0;
-}
-
-.hero h1 span{
-  color:#7650d9;
-}
-
-.hero p{
-  color:#666;
-  line-height:1.7;
-  font-size:17px;
-  max-width:560px;
-}
-
-.shop-btn{
-  display:inline-block;
-  margin-top:25px;
-  background:#111;
-  color:white;
-  padding:14px 24px;
-  border-radius:10px;
   text-decoration:none;
-  font-weight:bold;
+  position:relative
 }
+.navlinks a:after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-7px;
+  width:0;
+  height:2px;
+  background:#111;
+  transition:.3s
+}
+.navlinks a:hover:after{width:100%}
 
-.hero-box{
-  min-height:330px;
-  border-radius:30px;
-  background:linear-gradient(135deg,#19131f,#6847a8);
+.actions{
   display:flex;
   align-items:center;
-  justify-content:center;
-  color:white;
-  font-size:80px;
-  font-weight:900;
-  box-shadow:0 25px 60px #0002;
+  gap:10px
 }
+.iconbtn{
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#f2f2f2;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  transition:.25s
+}
+.iconbtn:hover{
+  transform:translateY(-3px);
+  background:#111;
+  color:white
+}
+.cartBtn{position:relative}
+.cartCount{
+  position:absolute;
+  top:-3px;
+  right:-2px;
+  min-width:19px;
+  height:19px;
+  padding:0 5px;
+  border-radius:20px;
+  background:#111;
+  color:white;
+  font-size:10px;
+  display:grid;
+  place-items:center;
+  border:2px solid white
+}
+.cartCount.bump{animation:bump .4s ease}
+
+.hero{
+  min-height:650px;
+  background:
+    radial-gradient(circle at 75% 25%,#444 0,#181818 25%,#090909 65%);
+  color:white;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background:rgba(255,255,255,.04);
+  right:-150px;
+  top:-100px;
+  animation:float 7s infinite ease-in-out
+}
+.heroContent{
+  max-width:1250px;
+  width:100%;
+  margin:auto;
+  padding:80px 20px;
+  position:relative;
+  z-index:2
+}
+.tag{
+  display:inline-block;
+  border:1px solid #555;
+  border-radius:50px;
+  padding:9px 15px;
+  font-size:12px;
+  margin-bottom:25px;
+  animation:fadeUp .7s ease
+}
+.hero h1{
+  font-size:clamp(48px,8vw,92px);
+  line-height:.95;
+  letter-spacing:-5px;
+  max-width:800px;
+  animation:fadeUp .9s ease
+}
+.hero h1 span{color:#d4ff00}
+.hero p{
+  margin-top:25px;
+  max-width:550px;
+  color:#bbb;
+  line-height:1.7;
+  animation:fadeUp 1.1s ease
+}
+.heroBtns{
+  display:flex;
+  gap:12px;
+  margin-top:32px;
+  animation:fadeUp 1.3s ease
+}
+.primary{
+  background:white;
+  color:#111;
+  padding:15px 25px;
+  border-radius:50px;
+  font-weight:700;
+  transition:.3s
+}
+.primary:hover{
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 15px 30px rgba(0,0,0,.3)
+}
+.secondary{
+  background:transparent;
+  color:white;
+  border:1px solid #555;
+  padding:15px 25px;
+  border-radius:50px;
+  font-weight:700;
+  transition:.3s
+}
+.secondary:hover{background:#222}
 
 .section{
-  max-width:1200px;
+  max-width:1250px;
   margin:auto;
-  padding:30px 20px 70px;
+  padding:85px 20px
 }
+.sectionHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:end;
+  margin-bottom:35px;
+  gap:20px
+}
+.sectionHead h2{
+  font-size:38px;
+  letter-spacing:-1.5px
+}
+.sectionHead p{color:#777;font-size:14px}
 
-.section-title{
-  font-size:32px;
-  margin-bottom:25px;
+.categories{
+  display:flex;
+  gap:10px;
+  overflow:auto;
+  padding-bottom:10px;
+  margin-bottom:35px
+}
+.cat{
+  white-space:nowrap;
+  background:white;
+  border:1px solid #e8e8e8;
+  border-radius:50px;
+  padding:12px 20px;
+  transition:.25s
+}
+.cat:hover,.cat.active{
+  background:#111;
+  color:white
 }
 
 .products{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:18px;
+  gap:20px
 }
-
 .product{
   background:white;
-  border-radius:18px;
+  border-radius:20px;
   overflow:hidden;
-  box-shadow:0 5px 20px #0000000d;
-  border:1px solid #eee;
+  position:relative;
+  transition:.35s;
+  opacity:0;
+  transform:translateY(30px)
 }
-
-.product-img{
-  height:220px;
-  background:linear-gradient(135deg,#eee,#d8d8df);
+.product.show{
+  opacity:1;
+  transform:translateY(0)
+}
+.product:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 45px rgba(0,0,0,.09)
+}
+.productImage{
+  height:290px;
+  background:linear-gradient(135deg,#eee,#d9d9d9);
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden
+}
+.productImage .fakeBottle{
+  width:105px;
+  height:175px;
+  border-radius:16px 16px 22px 22px;
+  background:#181818;
+  box-shadow:0 20px 35px rgba(0,0,0,.25);
   display:flex;
   align-items:center;
   justify-content:center;
-  color:#555;
-  font-size:23px;
+  color:white;
+  font-size:11px;
   font-weight:bold;
+  text-align:center;
+  transition:.5s
 }
-
-.product-info{
-  padding:18px;
+.product:hover .fakeBottle{
+  transform:rotate(-5deg) scale(1.07)
 }
-
-.product-info small{
-  color:#7650d9;
-  font-weight:bold;
-}
-
-.product-info h3{
-  margin:8px 0;
-}
-
-.price{
-  font-size:20px;
-  font-weight:bold;
-}
-
-.add-btn{
-  width:100%;
-  margin-top:15px;
-  padding:12px;
-  border:0;
-  border-radius:10px;
+.badge{
+  position:absolute;
+  top:14px;
+  left:14px;
   background:#111;
   color:white;
-  cursor:pointer;
-  font-weight:bold;
+  border-radius:50px;
+  padding:7px 10px;
+  font-size:10px;
+  font-weight:bold
 }
-
-.features{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-
-.feature{
+.wish{
+  position:absolute;
+  right:14px;
+  top:14px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
   background:white;
-  padding:25px;
-  border-radius:18px;
-  border:1px solid #eee;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  transition:.25s
 }
+.wish.active{
+  background:#111;
+  color:white;
+  animation:heart .35s ease
+}
+.productInfo{padding:20px}
+.rating{font-size:12px;margin-bottom:8px}
+.product h3{font-size:17px;margin-bottom:7px}
+.product p{
+  color:#777;
+  font-size:13px;
+  line-height:1.5;
+  min-height:38px
+}
+.price{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin:15px 0
+}
+.price strong{font-size:18px}
+.old{text-decoration:line-through;color:#aaa;font-size:13px}
+.add{
+  width:100%;
+  padding:13px;
+  background:#111;
+  color:white;
+  border-radius:12px;
+  font-weight:bold;
+  transition:.3s
+}
+.add:hover{background:#333;transform:scale(1.02)}
 
-.feature h3{
-  margin-bottom:8px;
+.banner{
+  background:#111;
+  color:white;
+  border-radius:28px;
+  padding:55px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:30px;
+  overflow:hidden;
+  position:relative
 }
-
-.feature p{
-  color:#666;
-  line-height:1.6;
-}
+.banner h2{font-size:42px;max-width:600px}
+.banner p{color:#aaa;margin-top:12px}
+.banner .primary{margin-top:25px}
 
 footer{
   background:#111;
+  color:white;
+  padding:65px 20px 30px
+}
+.footerInner{
+  max-width:1250px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px
+}
+footer h3{margin-bottom:15px}
+footer p,footer a{
   color:#aaa;
-  text-align:center;
-  padding:30px 20px;
+  font-size:13px;
+  line-height:2;
+  text-decoration:none
+}
+.copyright{
+  max-width:1250px;
+  margin:45px auto 0;
+  padding-top:20px;
+  border-top:1px solid #333;
+  color:#777;
+  font-size:12px
 }
 
-/* MODALS */
-
+/* OVERLAYS */
 .overlay{
-  display:none;
   position:fixed;
   inset:0;
-  background:#0009;
+  background:rgba(0,0,0,.55);
+  backdrop-filter:blur(5px);
   z-index:2000;
-  padding:20px;
-  overflow:auto;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s
 }
-
-.modal{
-  max-width:650px;
-  margin:40px auto;
-  background:white;
-  border-radius:20px;
-  padding:25px;
-  position:relative;
+.overlay.open{
+  opacity:1;
+  visibility:visible
 }
-
-.close{
+.drawer{
   position:absolute;
-  right:18px;
-  top:12px;
-  border:0;
-  background:none;
-  font-size:30px;
-  cursor:pointer;
+  right:0;
+  top:0;
+  height:100%;
+  width:min(450px,100%);
+  background:white;
+  transform:translateX(100%);
+  transition:.4s cubic-bezier(.77,0,.18,1);
+  display:flex;
+  flex-direction:column
 }
-
-.cart-item{
+.overlay.open .drawer{transform:translateX(0)}
+.drawerHead{
+  padding:22px;
+  border-bottom:1px solid #eee;
   display:flex;
   justify-content:space-between;
-  gap:10px;
+  align-items:center
+}
+.close{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  background:#f1f1f1
+}
+.cartItems{
+  padding:20px;
+  overflow:auto;
+  flex:1
+}
+.cartItem{
+  display:flex;
+  gap:13px;
   padding:15px 0;
-  border-bottom:1px solid #eee;
+  border-bottom:1px solid #eee
 }
-
-.qty button{
-  border:1px solid #ddd;
-  background:white;
-  padding:5px 10px;
-  cursor:pointer;
-}
-
-.total{
-  font-size:22px;
-  font-weight:bold;
-  margin:20px 0;
-}
-
-.checkout-btn{
-  width:100%;
-  padding:14px;
-  border:0;
-  background:#111;
-  color:white;
-  border-radius:10px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-.form{
+.cartThumb{
+  width:70px;
+  height:75px;
+  background:#eee;
+  border-radius:12px;
   display:grid;
-  gap:12px;
-  margin-top:20px;
+  place-items:center;
+  font-size:10px
 }
+.cartInfo{flex:1}
+.cartInfo h4{font-size:14px}
+.cartInfo p{font-size:13px;margin-top:5px;color:#555}
+.qty{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:9px
+}
+.qty button{
+  width:27px;
+  height:27px;
+  border-radius:50%;
+  background:#eee
+}
+.drawerBottom{
+  padding:20px;
+  border-top:1px solid #eee
+}
+.total{
+  display:flex;
+  justify-content:space-between;
+  font-size:20px;
+  font-weight:bold;
+  margin-bottom:15px
+}
+.full{width:100%}
 
-.form input,
-.form textarea{
+/* MODAL */
+.modal{
+  position:absolute;
+  width:min(500px,calc(100% - 30px));
+  max-height:90vh;
+  overflow:auto;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-45%) scale(.95);
+  background:white;
+  border-radius:25px;
+  padding:28px;
+  transition:.3s
+}
+.overlay.open .modal{
+  transform:translate(-50%,-50%) scale(1)
+}
+.modalHead{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:22px
+}
+.field{margin-bottom:15px}
+.field label{
+  display:block;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:7px
+}
+.field input,.field textarea,.field select{
   width:100%;
-  padding:13px;
+  padding:13px 14px;
   border:1px solid #ddd;
-  border-radius:9px;
+  border-radius:12px;
+  outline:none
 }
-
-.payment-options{
+.field input:focus,.field textarea:focus{
+  border-color:#111
+}
+.payment{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
+  margin:15px 0
 }
-
-.payment{
+.pay{
+  border:1px solid #ddd;
   padding:15px;
-  border:2px solid #ddd;
-  border-radius:12px;
-  background:white;
-  cursor:pointer;
+  border-radius:13px;
   text-align:left;
+  background:white
 }
-
-.payment.active{
-  border-color:#7650d9;
-  background:#f5f0ff;
+.pay.selected{
+  border:2px solid #111;
+  background:#f5f5f5
 }
-
-.bank-details{
-  display:none;
-  background:#f4f4f4;
+.advanceBox{
+  background:#f5f5f5;
   padding:15px;
-  border-radius:10px;
-  line-height:1.8;
+  border-radius:13px;
+  margin-bottom:15px;
+  display:none;
+  font-size:13px;
+  line-height:1.8
 }
 
-.bank-details.show{
-  display:block;
-}
-
-.whatsapp{
-  display:block;
-  margin-top:12px;
-  background:#20b858;
+/* TOAST */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translate(-50%,120px);
+  background:#111;
   color:white;
-  text-align:center;
-  padding:13px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:bold;
+  padding:14px 20px;
+  border-radius:50px;
+  z-index:5000;
+  font-size:13px;
+  transition:.4s
+}
+.toast.show{transform:translate(-50%,0)}
+
+/* MOBILE */
+.mobileNav{
+  display:none
 }
 
-@media(max-width:850px){
-  .hero{
-    grid-template-columns:1fr;
+@media(max-width:900px){
+  .products{grid-template-columns:repeat(2,1fr)}
+  .navlinks{display:none}
+  .footerInner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav{height:65px;padding:0 14px}
+  .logo{font-size:21px}
+  .actions .hideMobile{display:none}
+  .hero{min-height:570px}
+  .heroContent{padding:70px 20px}
+  .hero h1{letter-spacing:-3px}
+  .section{padding:60px 15px}
+  .sectionHead h2{font-size:30px}
+  .products{grid-template-columns:1fr 1fr;gap:10px}
+  .productImage{height:210px}
+  .productImage .fakeBottle{
+    width:75px;height:125px
   }
-
-  .hero h1{
-    font-size:50px;
+  .productInfo{padding:13px}
+  .product h3{font-size:14px}
+  .product p{font-size:11px}
+  .banner{padding:35px 25px}
+  .banner h2{font-size:30px}
+  .footerInner{grid-template-columns:1fr 1fr}
+  .mobileNav{
+    position:fixed;
+    display:flex;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:1500;
+    background:white;
+    border-top:1px solid #ddd;
+    justify-content:space-around;
+    padding:9px
   }
-
-  .products{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .features{
-    grid-template-columns:1fr;
+  .mobileNav button{
+    background:none;
+    font-size:11px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:3px
   }
 }
 
-@media(max-width:500px){
-  .products{
-    grid-template-columns:1fr;
-  }
-
-  .hero{
-    padding-top:45px;
-  }
-
-  .hero h1{
-    font-size:43px;
-  }
-
-  .hero-box{
-    min-height:230px;
-    font-size:60px;
-  }
-
-  .payment-options{
-    grid-template-columns:1fr;
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes slideDown{
+  from{transform:translateY(-100%)}
+  to{transform:translateY(0)}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(30px)}
+}
+@keyframes bump{
+  50%{transform:scale(1.5)}
+}
+@keyframes heart{
+  50%{transform:scale(1.35)}
+}
+.fly{
+  position:fixed;
+  z-index:6000;
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:#111;
+  pointer-events:none;
+  animation:flyCart .7s cubic-bezier(.5,-.5,.5,1)
+}
+@keyframes flyCart{
+  to{
+    transform:translate(
+      calc(50vw - var(--x)),
+      calc(-50vh + var(--y))
+    ) scale(.2);
+    opacity:0
   }
 }
 </style>
@@ -376,714 +650,302 @@ footer{
 
 <body>
 
+<div class="announcement">
+  🚚 FREE DELIVERY ON ORDERS ABOVE <span>Rs. 2,000</span> • A.B STORE
+</div>
+
 <header>
-  <div class="navbar">
+  <div class="nav">
     <div class="logo">A.B <span>STORE</span></div>
 
-    <button class="cart-btn" onclick="openCart()">
-      🛒 Cart (<span id="cartCount">0</span>)
-    </button>
+    <nav class="navlinks">
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#deals">Deals</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <div class="actions">
+      <button class="iconbtn hideMobile" onclick="openSearch()">⌕</button>
+      <button class="iconbtn hideMobile" onclick="openAccount()">♙</button>
+      <button class="iconbtn cartBtn" onclick="openCart()">
+        🛒
+        <span class="cartCount" id="cartCount">0</span>
+      </button>
+    </div>
   </div>
 </header>
 
-<section class="hero">
+<main>
 
-  <div>
-    <div class="badge">Premium Shopping</div>
-
-    <h1>
-      Shop Smart.<br>
-      <span>Live Better.</span>
-    </h1>
-
+<section class="hero" id="home">
+  <div class="heroContent">
+    <div class="tag">NEW COLLECTION • A.B STORE</div>
+    <h1>SHOP <span>SMART.</span><br>LIVE BETTER.</h1>
     <p>
-      Welcome to A.B STORE — your online destination for quality
-      products at great prices. Choose Cash on Delivery or Advance
-      Payment at checkout.
+      Premium everyday essentials selected for your lifestyle.
+      Discover quality products at prices made for everyone.
     </p>
-
-    <a href="#shop" class="shop-btn">Shop Now →</a>
+    <div class="heroBtns">
+      <button class="primary" onclick="scrollToShop()">Shop Now →</button>
+      <button class="secondary" onclick="openAccount()">Create Account</button>
+    </div>
   </div>
-
-  <div class="hero-box">
-    A.B
-  </div>
-
 </section>
 
 <section class="section" id="shop">
 
-  <h2 class="section-title">Featured Products</h2>
+  <div class="sectionHead">
+    <div>
+      <h2>Shop Products</h2>
+      <p>Everything you need, in one place.</p>
+    </div>
+  </div>
+
+  <div class="categories">
+    <button class="cat active" onclick="filterProducts('all',this)">All</button>
+    <button class="cat" onclick="filterProducts('face',this)">Face</button>
+    <button class="cat" onclick="filterProducts('body',this)">Body</button>
+    <button class="cat" onclick="filterProducts('hair',this)">Hair</button>
+    <button class="cat" onclick="filterProducts('deals',this)">Deals</button>
+  </div>
+
+  <div class="products" id="products"></div>
+</section>
+
+<section class="section" id="deals">
+  <div class="banner">
+    <div>
+      <h2>More products.<br>Better prices.</h2>
+      <p>Join A.B STORE and get updates about new deals.</p>
+      <button class="primary" onclick="openAccount()">Join Now →</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="sectionHead">
+    <div>
+      <h2>Why A.B STORE?</h2>
+      <p>Simple shopping. Reliable products.</p>
+    </div>
+  </div>
 
   <div class="products">
-
-    <div class="product">
-
-      <div class="product-img">
-        Glow Face Wash
+    <div class="product show">
+      <div class="productInfo">
+        <h3>🚚 Fast Delivery</h3>
+        <p>Orders are processed quickly and delivered to your address.</p>
       </div>
-
-      <div class="product-info">
-
-        <small>SKINCARE</small>
-
-        <h3>Glow Face Wash</h3>
-
-        <div class="price">
-          Rs. 899
-        </div>
-
-        <button
-          class="add-btn"
-          onclick="addToCart('Glow Face Wash',899)">
-          Add to Cart
-        </button>
-
-      </div>
-
     </div>
 
-
-    <div class="product">
-
-      <div class="product-img">
-        Charcoal Face Wash
+    <div class="product show">
+      <div class="productInfo">
+        <h3>💳 Flexible Payment</h3>
+        <p>Choose Cash on Delivery or Advance Payment.</p>
       </div>
-
-      <div class="product-info">
-
-        <small>SKINCARE</small>
-
-        <h3>Charcoal Face Wash</h3>
-
-        <div class="price">
-          Rs. 799
-        </div>
-
-        <button
-          class="add-btn"
-          onclick="addToCart('Charcoal Face Wash',799)">
-          Add to Cart
-        </button>
-
-      </div>
-
     </div>
 
-
-    <div class="product">
-
-      <div class="product-img">
-        Body Wash
+    <div class="product show">
+      <div class="productInfo">
+        <h3>🔒 Secure Checkout</h3>
+        <p>Your checkout information stays protected.</p>
       </div>
-
-      <div class="product-info">
-
-        <small>BODY CARE</small>
-
-        <h3>Premium Body Wash</h3>
-
-        <div class="price">
-          Rs. 1,199
-        </div>
-
-        <button
-          class="add-btn"
-          onclick="addToCart('Premium Body Wash',1199)">
-          Add to Cart
-        </button>
-
-      </div>
-
     </div>
 
-
-    <div class="product">
-
-      <div class="product-img">
-        Shampoo
+    <div class="product show">
+      <div class="productInfo">
+        <h3>⭐ Quality Products</h3>
+        <p>Products selected for everyday use and value.</p>
       </div>
-
-      <div class="product-info">
-
-        <small>HAIR CARE</small>
-
-        <h3>Daily Shampoo</h3>
-
-        <div class="price">
-          Rs. 999
-        </div>
-
-        <button
-          class="add-btn"
-          onclick="addToCart('Daily Shampoo',999)">
-          Add to Cart
-        </button>
-
-      </div>
-
     </div>
-
   </div>
-
 </section>
 
-
-<section class="section">
-
-  <h2 class="section-title">
-    Why A.B STORE?
-  </h2>
-
-  <div class="features">
-
-    <div class="feature">
-      <h3>🚚 Cash on Delivery</h3>
-      <p>
-        Order your products and pay when your parcel arrives.
-      </p>
-    </div>
-
-    <div class="feature">
-      <h3>🏦 Advance Payment</h3>
-      <p>
-        Transfer payment to the bank account provided by the store
-        and confirm your payment through WhatsApp.
-      </p>
-    </div>
-
-    <div class="feature">
-      <h3>📱 Easy Confirmation</h3>
-      <p>
-        After advance payment, simply send your payment screenshot
-        to our WhatsApp number.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
+</main>
 
 <footer>
-  <strong>A.B STORE</strong>
-  <br><br>
-  © 2026 A.B STORE. All Rights Reserved.
-</footer>
-
-
-<!-- CART -->
-
-<div class="overlay" id="cartModal">
-
-  <div class="modal">
-
-    <button class="close" onclick="closeCart()">×</button>
-
-    <h2>Your Cart</h2>
-
-    <div id="cartItems"></div>
-
-    <div class="total">
-      Total: Rs. <span id="cartTotal">0</span>
+  <div class="footerInner">
+    <div>
+      <h3>A.B STORE</h3>
+      <p>Shop Smart. Live Better.</p>
+      <p>Premium everyday products at affordable prices.</p>
     </div>
 
-    <button
-      class="checkout-btn"
-      onclick="openCheckout()">
-      Proceed to Checkout
+    <div>
+      <h3>Shop</h3>
+      <a href="#shop">All Products</a><br>
+      <a href="#shop">Face</a><br>
+      <a href="#shop">Body</a><br>
+      <a href="#shop">Hair</a>
+    </div>
+
+    <div>
+      <h3>Help</h3>
+      <a href="#">Shipping</a><br>
+      <a href="#">Returns</a><br>
+      <a href="#">Contact</a>
+    </div>
+
+    <div>
+      <h3>Account</h3>
+      <a href="#" onclick="openAccount()">Login</a><br>
+      <a href="#" onclick="openAccount()">Create Account</a><br>
+      <a href="#" onclick="openCart()">Cart</a>
+    </div>
+  </div>
+
+  <div class="copyright">
+    © 2026 A.B STORE. All rights reserved.
+  </div>
+</footer>
+
+<div class="mobileNav">
+  <button onclick="location.href='#home'">⌂<span>Home</span></button>
+  <button onclick="location.href='#shop'">⌕<span>Shop</span></button>
+  <button onclick="openAccount()">♙<span>Account</span></button>
+  <button onclick="openCart()">🛒<span>Cart</span></button>
+</div>
+
+<!-- CART -->
+<div class="overlay" id="cartOverlay" onclick="outsideClose(event,'cartOverlay')">
+  <div class="drawer">
+    <div class="drawerHead">
+      <h2>Your Cart</h2>
+      <button class="close" onclick="closeOverlay('cartOverlay')">×</button>
+    </div>
+
+    <div class="cartItems" id="cartItems"></div>
+
+    <div class="drawerBottom">
+      <div class="total">
+        <span>Total</span>
+        <span id="cartTotal">Rs. 0</span>
+      </div>
+      <button class="add full" onclick="openCheckout()">Proceed to Checkout →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ACCOUNT -->
+<div class="overlay" id="accountOverlay" onclick="outsideClose(event,'accountOverlay')">
+  <div class="modal">
+
+    <div class="modalHead">
+      <h2 id="accountTitle">Create Account</h2>
+      <button class="close" onclick="closeOverlay('accountOverlay')">×</button>
+    </div>
+
+    <div id="registerBox">
+      <div class="field">
+        <label>FULL NAME</label>
+        <input id="regName" placeholder="Your name">
+      </div>
+
+      <div class="field">
+        <label>EMAIL</label>
+        <input id="regEmail" type="email" placeholder="you@example.com">
+      </div>
+
+      <div class="field">
+        <label>PASSWORD</label>
+        <input id="regPassword" type="password" placeholder="••••••••">
+      </div>
+
+      <button class="add full" onclick="createAccount()">Create Account</button>
+
+      <p style="text-align:center;margin-top:18px;font-size:13px;color:#777">
+        Already have an account?
+        <a href="#" onclick="showLogin()">Login</a>
+      </p>
+    </div>
+
+    <div id="loginBox" style="display:none">
+      <div class="field">
+        <label>EMAIL</label>
+        <input id="loginEmail" type="email" placeholder="you@example.com">
+      </div>
+
+      <div class="field">
+        <label>PASSWORD</label>
+        <input id="loginPassword" type="password" placeholder="••••••••">
+      </div>
+
+      <button class="add full" onclick="login()">Login</button>
+
+      <p style="text-align:center;margin-top:18px;font-size:13px;color:#777">
+        New customer?
+        <a href="#" onclick="showRegister()">Create Account</a>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div class="overlay" id="searchOverlay">
+  <div class="modal">
+    <div class="modalHead">
+      <h2>Search</h2>
+      <button class="close" onclick="closeOverlay('searchOverlay')">×</button>
+    </div>
+    <div class="field">
+      <input id="searchInput" placeholder="Search products..." oninput="searchProducts()">
+    </div>
+    <div id="searchResults"></div>
+  </div>
+</div>
+
+<!-- CHECKOUT -->
+<div class="overlay" id="checkoutOverlay">
+  <div class="modal">
+
+    <div class="modalHead">
+      <h2>Checkout</h2>
+      <button class="close" onclick="closeOverlay('checkoutOverlay')">×</button>
+    </div>
+
+    <div class="field">
+      <label>FULL NAME</label>
+      <input id="customerName" placeholder="Your full name">
+    </div>
+
+    <div class="field">
+      <label>PHONE NUMBER</label>
+      <input id="customerPhone" placeholder="03XXXXXXXXX">
+    </div>
+
+    <div class="field">
+      <label>COMPLETE ADDRESS</label>
+      <textarea id="customerAddress" rows="3" placeholder="House, street, city..."></textarea>
+    </div>
+
+    <label style="font-size:12px;font-weight:bold">PAYMENT METHOD</label>
+
+    <div class="payment">
+      <button class="pay selected" id="codPay" onclick="selectPayment('cod')">
+        💵<br>
+        <b>Cash on Delivery</b>
+      </button>
+
+      <button class="pay" id="advancePay" onclick="selectPayment('advance')">
+        💳<br>
+        <b>Advance Payment</b>
+      </button>
+    </div>
+
+    <div class="advanceBox" id="advanceBox">
+      <b>Advance Payment Details</b><br><br>
+      Bank: <span id="bankName">Your Bank</span><br>
+      Account Title: <span id="accountTitleText">A.B STORE</span><br>
+      Account Number: <span id="accountNumber">XXXXXXXXXXXX</span>
+      <br><br>
+      Transfer the amount and send payment screenshot on WhatsApp for confirmation.
+    </div>
+
+    <button class="add full" onclick="placeOrder()">
+      Place Order →
     </button>
 
   </div>
-
-</div>
-
-
-<!-- CHECKOUT -->
-
-<div class="overlay" id="checkoutModal">
-
-  <div class="modal">
-
-    <button class="close" onclick="closeCheckout()">×</button>
-
-    <h2>Checkout</h2>
-
-    <form class="form" onsubmit="placeOrder(event)">
-
-      <input
-        id="customerName"
-        type="text"
-        placeholder="Full Name"
-        required>
-
-      <input
-        id="customerPhone"
-        type="tel"
-        placeholder="Phone Number"
-        required>
-
-      <textarea
-        id="customerAddress"
-        rows="3"
-        placeholder="Complete Delivery Address"
-        required></textarea>
-
-
-      <h3>Payment Method</h3>
-
-      <div class="payment-options">
-
-        <button
-          type="button"
-          id="codPayment"
-          class="payment active"
-          onclick="selectPayment('COD')">
-
-          💵 <strong>Cash on Delivery</strong>
-
-          <br>
-
-          <small>Pay when parcel arrives</small>
-
-        </button>
-
-
-        <button
-          type="button"
-          id="advancePayment"
-          class="payment"
-          onclick="selectPayment('ADVANCE')">
-
-          🏦 <strong>Advance Payment</strong>
-
-          <br>
-
-          <small>Bank transfer</small>
-
-        </button>
-
-      </div>
-
-
-      <div
-        id="bankDetails"
-        class="bank-details">
-
-        <strong>Advance Payment Details</strong>
-
-        <br><br>
-
-        Bank:
-        <span id="bankName">Your Bank</span>
-
-        <br>
-
-        Account Title:
-        <span id="accountTitle">A.B STORE</span>
-
-        <br>
-
-        Account / IBAN:
-        <span id="accountNumber">XXXXXXXX</span>
-
-        <br><br>
-
-        After payment, send your payment screenshot
-        to our WhatsApp for confirmation.
-
-        <a
-          id="whatsappButton"
-          class="whatsapp"
-          href="#"
-          target="_blank">
-
-          📱 Confirm Payment on WhatsApp
-
-        </a>
-
-      </div>
-
-
-      <button
-        type="submit"
-        class="checkout-btn">
-
-        Place Order
-
-      </button>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<script>
-
-let cart = [];
-
-let paymentMethod = "COD";
-
-
-/* ADMIN PAYMENT DETAILS */
-
-let storeSettings = {
-
-  bankName: "Your Bank",
-
-  accountTitle: "A.B STORE",
-
-  accountNumber: "XXXXXXXXXXXX",
-
-  whatsapp: "923001234567"
-
-};
-
-
-/* ADD TO CART */
-
-function addToCart(name,price){
-
-  let existing = cart.find(
-    item => item.name === name
-  );
-
-  if(existing){
-
-    existing.quantity++;
-
-  }else{
-
-    cart.push({
-
-      name:name,
-
-      price:price,
-
-      quantity:1
-
-    });
-
-  }
-
-  updateCart();
-
-  alert("Product added to cart!");
-
-}
-
-
-/* UPDATE CART */
-
-function updateCart(){
-
-  let count = 0;
-
-  let total = 0;
-
-  cart.forEach(item => {
-
-    count += item.quantity;
-
-    total += item.price * item.quantity;
-
-  });
-
-
-  document.getElementById(
-    "cartCount"
-  ).innerText = count;
-
-
-  document.getElementById(
-    "cartTotal"
-  ).innerText = total.toLocaleString();
-
-
-  let html = "";
-
-
-  if(cart.length === 0){
-
-    html = "<p>Your cart is empty.</p>";
-
-  }else{
-
-    cart.forEach((item,index)=>{
-
-      html += `
-
-        <div class="cart-item">
-
-          <div>
-
-            <strong>
-              ${item.name}
-            </strong>
-
-            <br>
-
-            Rs. ${item.price.toLocaleString()}
-
-          </div>
-
-
-          <div class="qty">
-
-            <button onclick="changeQty(${index},-1)">
-              −
-            </button>
-
-            ${item.quantity}
-
-            <button onclick="changeQty(${index},1)">
-              +
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    });
-
-  }
-
-
-  document.getElementById(
-    "cartItems"
-  ).innerHTML = html;
-
-}
-
-
-/* QUANTITY */
-
-function changeQty(index,value){
-
-  cart[index].quantity += value;
-
-  if(cart[index].quantity <= 0){
-
-    cart.splice(index,1);
-
-  }
-
-  updateCart();
-
-}
-
-
-/* OPEN CART */
-
-function openCart(){
-
-  document.getElementById(
-    "cartModal"
-  ).style.display = "block";
-
-}
-
-
-/* CLOSE CART */
-
-function closeCart(){
-
-  document.getElementById(
-    "cartModal"
-  ).style.display = "none";
-
-}
-
-
-/* CHECKOUT */
-
-function openCheckout(){
-
-  if(cart.length === 0){
-
-    alert("Your cart is empty!");
-
-    return;
-
-  }
-
-  closeCart();
-
-  document.getElementById(
-    "checkoutModal"
-  ).style.display = "block";
-
-  updateBankDetails();
-
-}
-
-
-/* CLOSE CHECKOUT */
-
-function closeCheckout(){
-
-  document.getElementById(
-    "checkoutModal"
-  ).style.display = "none";
-
-}
-
-
-/* PAYMENT METHOD */
-
-function selectPayment(method){
-
-  paymentMethod = method;
-
-
-  document.getElementById(
-    "codPayment"
-  ).classList.remove("active");
-
-
-  document.getElementById(
-    "advancePayment"
-  ).classList.remove("active");
-
-
-  if(method === "COD"){
-
-    document.getElementById(
-      "codPayment"
-    ).classList.add("active");
-
-    document.getElementById(
-      "bankDetails"
-    ).classList.remove("show");
-
-  }else{
-
-    document.getElementById(
-      "advancePayment"
-    ).classList.add("active");
-
-    document.getElementById(
-      "bankDetails"
-    ).classList.add("show");
-
-  }
-
-}
-
-
-/* BANK DETAILS */
-
-function updateBankDetails(){
-
-  document.getElementById(
-    "bankName"
-  ).innerText = storeSettings.bankName;
-
-
-  document.getElementById(
-    "accountTitle"
-  ).innerText = storeSettings.accountTitle;
-
-
-  document.getElementById(
-    "accountNumber"
-  ).innerText = storeSettings.accountNumber;
-
-
-  let message =
-    "Hello A.B STORE, I have made the advance payment. I am sending my payment screenshot for order confirmation.";
-
-
-  document.getElementById(
-    "whatsappButton"
-  ).href =
-    "https://wa.me/" +
-    storeSettings.whatsapp +
-    "?text=" +
-    encodeURIComponent(message);
-
-}
-
-
-/* PLACE ORDER */
-
-function placeOrder(event){
-
-  event.preventDefault();
-
-
-  let name =
-    document.getElementById(
-      "customerName"
-    ).value;
-
-
-  let phone =
-    document.getElementById(
-      "customerPhone"
-    ).value;
-
-
-  let address =
-    document.getElementById(
-      "customerAddress"
-    ).value;
-
-
-  let orderText =
-    "A.B STORE ORDER%0A%0A" +
-
-    "Name: " +
-    encodeURIComponent(name) +
-
-    "%0APhone: " +
-    encodeURIComponent(phone) +
-
-    "%0AAddress: " +
-    encodeURIComponent(address) +
-
-    "%0APayment: " +
-    encodeURIComponent(paymentMethod);
-
-
-  if(paymentMethod === "ADVANCE"){
-
-    alert(
-      "Order details ready. Please complete the bank transfer and send the payment screenshot on WhatsApp for confirmation."
-    );
-
-    window.open(
-      "https://wa.me/" +
-      storeSettings.whatsapp +
-      "?text=" +
-      orderText,
-      "_blank"
-    );
-
-  }else{
-
-    alert(
-      "Your COD order has been placed successfully!"
-    );
-
-  }
-
-
-  cart = [];
-
-  updateCart();
-
-  closeCheckout();
-
-}
-
-updateCart();
-
-</script>
-
-</body>
-  </html>
+</di
